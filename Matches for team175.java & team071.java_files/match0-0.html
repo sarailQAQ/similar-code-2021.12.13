@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0042)http://localhost:8000/D_java/match0-0.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <title>team175.java</title>
+
+  <script type="text/javascript">
+  <!--
+   function ZweiFrames(URL1,F1,URL2,F2)
+   {
+    parent.frames[F1].location.href=URL1;
+    parent.frames[F2].location.href=URL2;
+   }
+  //-->
+  </script>
+</head>
+<body bgcolor="#ffffff">
+<hr>
+<h3><center>team175.java</center></h3><hr>
+<pre><a name="0"></a><font color="#0000ff"><a href="javascript:ZweiFrames(&#39;match0-1.html#0&#39;,3,&#39;match0-top.html#0&#39;,1)"><img src="./forward.gif" alt="other" border="0" align="right"></a><b>import java.util.*;
+public class Solution {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int times = in.nextInt();
+        for(int i = 0;i&lt;times;i++){
+            int aa = in.nextInt();
+            long mulk = 1;
+            int res = 0;
+            for (int k = 0; n &gt;= mulk; ++k) {
+                res += (n / (mulk * 10)) * mulk + Math.min(Math.max(n % (mulk * 10) - aa* mulk + 1, 0), mulk);
+                mulk *= 10;
+            }
+            System.out.println(res);
+        }
+    }
+}</b></font>
+</pre>
+
+
+
+</body></html>

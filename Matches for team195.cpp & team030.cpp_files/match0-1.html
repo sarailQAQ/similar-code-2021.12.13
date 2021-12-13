@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0043)http://localhost:8000/B_c_cpp/match0-1.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <title>team030.cpp</title>
+
+  <script type="text/javascript">
+  <!--
+   function ZweiFrames(URL1,F1,URL2,F2)
+   {
+    parent.frames[F1].location.href=URL1;
+    parent.frames[F2].location.href=URL2;
+   }
+  //-->
+  </script>
+</head>
+<body bgcolor="#ffffff" style="margin-left:25">
+<hr>
+<h3><center>team030.cpp</center></h3><hr>
+<pre><a name="0"></a>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int num = 1000000007;
+<font color="#0000ff"><div style="position:absolute;left:0"><a href="javascript:ZweiFrames(&#39;match0-0.html#0&#39;,2,&#39;match0-top.html#0&#39;,1)"><img src="./back.gif" alt="other" border="0" align="left"></a></div><b>struct node//定义新矩阵结构体
+{
+    long long int N[4][4];
+}res;
+
+node M(node A, node B)
+{
+    int i, j, k;
+
+    node temp;
+    for (i = 0; i &lt; 4; i++)
+    {
+        for (j = 0; j &lt; 4; j++)
+        {
+            temp.N[i][j] = 0;
+        }
+    }
+    for (i = 0; i &lt; 4; i++)//矩阵相乘的代码
+    {
+        for (j = 0; j &lt; 4; j++)
+        {
+            for (k = 0; k &lt; 4; k++)
+            {
+                temp.N[i][j] = (temp.N[i][j] + (A.N[i][k] % num * B.N[k][j] % num) % num) % num;
+            }
+        }
+    }
+    return temp;
+}
+
+node matrix(node a, long long n)
+{
+    node c;
+    memset(c.N, 0, sizeof(c.N));
+    int i;
+    for (i = 0; i &lt; 4; i++)  c.N[i][i] = 1;
+    while (n)
+    {
+        if (n &amp; 1)
+        {
+            c = M(c, a);
+        }
+        a = M(a, a);
+        n = n &gt;&gt; 1;
+    }
+    return c;
+}
+
+int main()
+{
+    long long int* out = new long long[10000];
+    int Q;
+    cin &gt;&gt; Q;
+    for (int i = 0; i &lt; Q; i++)
+    {
+        long long int index;
+        cin &gt;&gt; index;//指数
+        if (index &lt; 3)
+        {
+            out[i] = 0;
+            continue;
+        }
+        else if (index == 3)
+        {
+            out[i] = 1;
+            continue;
+        }
+        res.N[0][0] = 1;
+        res.N[0][1] = 3;
+        res.N[0][2] = -2;
+        res.N[0][3] = -1;
+        res.N[1][0] = 1;
+        res.N[2][1] = 1;
+        res.N[3][2] = 1;
+        index = index - 3;
+        node result;
+        memset(result.N, 0, sizeof(result.N));
+        result = matrix(res, index);//矩阵快速幂
+        node a;
+        memset(a.N, 0, sizeof(a.N));
+        a.N[0][0] = 1;
+        node result1;
+        memset(result1.N, 0, sizeof(result1.N));
+        result1 = M(result, a);
+        out[i] = result1.N[0][0];
+    }
+    for (int i = 0; i &lt; Q; i++)
+    {
+        cout &lt;&lt; (out[i] % num + num) % num &lt;&lt; endl;
+    }
+
+    delete[] out;
+    return 0;
+}</b></font>
+</pre>
+
+
+</body></html>
